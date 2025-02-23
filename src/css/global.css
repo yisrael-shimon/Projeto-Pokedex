@@ -32,7 +32,8 @@ footer {
 
 .direitos {
     margin: 0;
-    padding: 0;
+    padding: 10px 0;
     list-style: none;
     text-align: center;
+    font-size: 0.5em;
 }
