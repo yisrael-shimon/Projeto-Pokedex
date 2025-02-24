@@ -1,27 +1,30 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const pokemons = document.querySelectorAll(".pokemon");
-    const cartoesPokemon = document.querySelectorAll(".cartao-pokemon");
-  
-    pokemons.forEach((pokemon) => {
-      pokemon.addEventListener("click", () => {
-        // Remove a classe 'aberto' de todos os cartões
-        cartoesPokemon.forEach((cartao) => {
-          cartao.classList.remove("aberto");
-        });
-  
-        // Adiciona a classe 'aberto' ao cartão correspondente ao Pokémon clicado
-        const idPokemonSelecionado = pokemon.id;
-        const cartaoPokemonParaAbrir = document.getElementById(`cartao-${idPokemonSelecionado}`);
-        cartaoPokemonParaAbrir.classList.add("aberto");
-  
-        // Remove a classe 'ativo' de todos os itens da lista
-        pokemons.forEach((pokemon) => {
-          pokemon.classList.remove("ativo");
-        });
-  
-        // Adiciona a classe 'ativo' ao Pokémon clicado na lista
-        pokemon.classList.add("ativo");
-      });
+const cartoesPokemon = document.querySelectorAll('.cartao-pokemon');
+const listaPokemon = document.querySelectorAll('.pokemon');
+
+
+listaPokemon.forEach(pokemon => {
+    pokemon.addEventListener('click', () => {
+
+        cartoesPokemon.forEach(cartao => cartao.classList.remove('aberto'));
+        listaPokemon.forEach(pokemon => pokemon.classList.remove('ativo'));
+
+        const idPokemon = pokemon.attributes.id.value;
+        const cartaoPokemon = document.getElementById('cartao-' + idPokemon);
+        cartaoPokemon.classList.add('aberto');
+
+        pokemon.classList.add('ativo');
+
+    })
+});
+
+const musicaFundo = document.getElementById('musica-fundo');
+
+function iniciarMusica() {
+    musicaFundo.play().catch(error => {
+        console.error('Erro ao tentar reproduzir automaticamente a música de fundo: ', error);
     });
-  });
-  
+
+}
+
+document.body.addEventListener('click', iniciarMusica);
+
